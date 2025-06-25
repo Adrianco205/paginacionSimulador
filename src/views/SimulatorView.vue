@@ -1,8 +1,12 @@
 <template>
-  <div class="max-w-4xl mx-auto bg-white p-6 rounded shadow">
-    <!-- Inputs -->
+  <main class="simulator-container">
+    <!-- Entrada de datos -->
     <PageInput @set-data="handleData" />
+
+    <!-- Selector de algoritmo -->
     <AlgorithmSelector @set-algo="algo = $event" />
+
+    <!-- Controles -->
     <Controls
       :canStart="canSimulate"
       @simulate="runSimulation"
@@ -12,7 +16,7 @@
     <!-- Resultados -->
     <SimulationTable v-if="steps.length" :steps="steps" />
     <ResultSummary v-if="steps.length" :steps="steps" />
-  </div>
+  </main>
 </template>
 
 <script setup>

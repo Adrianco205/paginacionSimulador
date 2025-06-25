@@ -1,17 +1,14 @@
 <template>
-  <div class="mb-6">
+  <div class="controls-container">
     <button
       :disabled="!canStart"
       @click="$emit('simulate')"
-      class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 disabled:opacity-50"
+      class="btn-champions"
     >
-      Ejecutar simulación
+      🚀 Ejecutar simulación
     </button>
-    <button
-      @click="$emit('reset')"
-      class="ml-2 bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700"
-    >
-      Reiniciar
+    <button @click="$emit('reset')" class="btn-champions secondary">
+      ♻️ Reiniciar
     </button>
   </div>
 </template>

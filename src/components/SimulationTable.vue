@@ -1,36 +1,38 @@
 <template>
-  <div class="overflow-x-auto mt-6">
-    <h2 class="text-lg font-semibold mb-2">Simulación paso a paso:</h2>
+  <div class="simulation-table">
+    <h2 class="title">Simulación paso a paso:</h2>
 
-    <table class="min-w-full table-auto border-collapse border border-gray-300">
-      <thead class="bg-gray-200">
-        <tr>
-          <th class="border px-4 py-2">Paso</th>
-          <th class="border px-4 py-2">Página Referenciada</th>
-          <th class="border px-4 py-2">¿Fallo de página?</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr
-          v-for="(step, index) in steps"
-          :key="index"
-          :class="step.hit === '❌' ? 'bg-red-100' : 'bg-green-100'"
-        >
-          <td class="border px-4 py-2 text-center font-medium">{{ index + 1 }}</td>
-          <td class="border px-4 py-2 text-center">{{ step.page }}</td>
-          <td
-            v-for="(frame, i) in step.memory"
-            :key="i"
-            class="border px-4 py-2 text-center"
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Paso</th>
+            <th>Página Referenciada</th>
+            <th v-for="(f, i) in steps[0]?.memory.length" :key="i">
+              Marco {{ i + 1 }}
+            </th>
+            <th>¿Fallo de página?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            v-for="(step, index) in steps"
+            :key="index"
+            :class="step.hit === '❌' ? 'fail' : 'hit'"
           >
-            {{ frame }}
-          </td>
-          <td class="border px-4 py-2 text-center text-xl">
-            {{ step.hit }}
-          </td>
-        </tr>
-      </tbody>
-    </table>
+            <td>{{ index + 1 }}</td>
+            <td>{{ step.page }}</td>
+            <td
+              v-for="(frame, i) in step.memory"
+              :key="i"
+            >
+              {{ frame !== undefined ? frame : '-' }}
+            </td>
+            <td class="icon">{{ step.hit }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 

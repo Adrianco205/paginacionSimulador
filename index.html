@@ -1,13 +1,54 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + Vue</title>
+    <title>Simulador de Paginación</title>
+
+    <!-- Fuente moderna -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Estilo global -->
+    <link rel="stylesheet" href="/style.css">
   </head>
-  <body>
+  <body class="dark">
+    <header>
+      <h1>Simulador de Paginación</h1>
+      <div class="theme-toggle">
+        <span>☀️ / 🌙</span>
+        <label class="switch">
+          <input type="checkbox" id="themeSwitch" checked />
+          <span class="slider"></span>
+        </label>
+      </div>
+    </header>
+
     <div id="app"></div>
+
     <script type="module" src="/src/main.js"></script>
+
+    <script>
+      const toggle = document.getElementById('themeSwitch');
+      const body = document.body;
+
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'light') {
+        body.classList.remove('dark');
+        body.classList.add('light');
+        toggle.checked = false;
+      }
+
+      toggle.addEventListener('change', () => {
+        if (toggle.checked) {
+          body.classList.remove('light');
+          body.classList.add('dark');
+          localStorage.setItem('theme', 'dark');
+        } else {
+          body.classList.remove('dark');
+          body.classList.add('light');
+          localStorage.setItem('theme', 'light');
+        }
+      });
+    </script>
   </body>
 </html>

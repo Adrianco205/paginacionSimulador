@@ -1,21 +1,21 @@
 <template>
-  <div class="mt-6 p-4 bg-gray-50 rounded border">
-    <h2 class="text-lg font-semibold mb-2">Resumen de la simulación</h2>
+  <div class="summary-container">
+    <h2 class="title">Resumen de la simulación</h2>
 
-    <div class="flex flex-col sm:flex-row gap-4">
-      <div class="flex-1 bg-red-100 border border-red-300 rounded p-3 text-center">
-        <p class="text-xl font-bold text-red-700">{{ pageFaults }}</p>
-        <p class="text-gray-700">Fallos de página</p>
+    <div class="summary-cards">
+      <div class="card card-red">
+        <p class="big-number">{{ pageFaults }}</p>
+        <p>Fallos de página</p>
       </div>
 
-      <div class="flex-1 bg-green-100 border border-green-300 rounded p-3 text-center">
-        <p class="text-xl font-bold text-green-700">{{ hits }}</p>
-        <p class="text-gray-700">Aciertos</p>
+      <div class="card card-green">
+        <p class="big-number">{{ hits }}</p>
+        <p>Aciertos</p>
       </div>
 
-      <div class="flex-1 bg-blue-100 border border-blue-300 rounded p-3 text-center">
-        <p class="text-xl font-bold text-blue-700">{{ total }}</p>
-        <p class="text-gray-700">Total de referencias</p>
+      <div class="card card-blue">
+        <p class="big-number">{{ total }}</p>
+        <p>Total de referencias</p>
       </div>
     </div>
   </div>

@@ -1,13 +1,17 @@
 <template>
-<div class="mb-4">
-    <label class="block font-semibold mb-2">Selecciona el algoritmo:</label>
-    <label class="mr-4">
-    <input type="radio" value="fifo" v-model="selected" /> FIFO
-    </label>
-    <label>
-    <input type="radio" value="lru" v-model="selected" /> LRU
-    </label>
-</div>
+  <div class="algorithm-selector">
+    <label class="label-title">Selecciona el algoritmo:</label>
+    <div class="radio-group">
+      <label class="radio-option">
+        <input type="radio" value="fifo" v-model="selected" />
+        <span>FIFO</span>
+      </label>
+      <label class="radio-option">
+        <input type="radio" value="lru" v-model="selected" />
+        <span>LRU</span>
+      </label>
+    </div>
+  </div>
 </template>
 
 <script setup>
@@ -17,6 +21,6 @@ const selected = ref('fifo');
 const emit = defineEmits(['set-algo']);
 
 watch(selected, (val) => {
-emit('set-algo', val);
+  emit('set-algo', val);
 });
 </script>
