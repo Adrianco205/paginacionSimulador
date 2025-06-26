@@ -11,14 +11,6 @@
     <button @click="$emit('reset')" class="btn-champions secondary">
       ♻️ Reiniciar
     </button>
-
-    <button
-      :disabled="!canStart"
-      @click="$emit('simulate-both')"
-      class="btn-champions tertiary"
-    >
-      🔁 Simular ambos
-    </button>
   </div>
 </template>
 
@@ -43,3 +35,4 @@ defineProps({
   background-color: #45a049;
 }
 </style>
+

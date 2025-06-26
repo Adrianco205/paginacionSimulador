@@ -14,6 +14,19 @@
       @reset="resetSimulation"
     />
 
+
+<!-- Resultado único si el algoritmo es FIFO o LRU -->
+<section
+  v-if="steps.length > 0 && algo !== 'both'"
+  class="result-section"
+>
+  <h2>
+    {{ algo === 'fifo' ? '🟡 Resultado FIFO' : '🔵 Resultado LRU' }}
+  </h2>
+  <SimulationTable :steps="steps" :frames="frames" />
+  <ResultSummary :steps="steps" />
+</section>
+
 <!-- Resultados FIFO y LRU en columnas -->
 <div
   v-if="stepsFIFO.length > 0 || stepsLRU.length > 0"
@@ -92,9 +105,15 @@ const canSimulate = computed(() => pages.value.length > 0 && frames.value > 0);
 function runSimulation() {
   stepsFIFO.value = [];
   stepsLRU.value = [];
-  steps.value = algo.value === 'fifo'
-    ? fifo(pages.value, frames.value)
-    : lru(pages.value, frames.value);
+  steps.value = [];
+
+  if (algo.value === 'fifo') {
+    steps.value = fifo(pages.value, frames.value);
+  } else if (algo.value === 'lru') {
+    steps.value = lru(pages.value, frames.value);
+  } else if (algo.value === 'both') {
+    runBothSimulations();
+  }
 }
 
 function resetSimulation() {
