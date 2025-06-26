@@ -45,3 +45,56 @@ defineProps({
   }
 });
 </script>
+<style scoped>
+.simulation-table {
+  width: 100%;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  min-width: 600px;
+}
+
+th, td {
+  border: 1px solid #444;
+  padding: 0.75rem;
+  text-align: center;
+  word-wrap: break-word;
+  color: #fff;
+}
+
+th {
+  background-color: #003366;
+  color: #fff;
+}
+
+td.icon {
+  font-size: 1.3rem;
+}
+
+/* Suaviza el verde y rojo, números blancos */
+.fail {
+  background-color: #5a1c1c;  /* rojo oscuro suavizado */
+  color: #fff;
+}
+
+.hit {
+  background-color: #1e3b1e;  /* verde oscuro suavizado */
+  color: #fff;
+}
+
+/* Mejora contraste del header */
+.title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #eee;
+}
+</style>
+
