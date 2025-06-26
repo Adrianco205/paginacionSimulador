@@ -8,8 +8,8 @@
           <tr>
             <th>Paso</th>
             <th>Página Referenciada</th>
-            <th v-for="(f, i) in steps[0]?.memory.length" :key="i">
-              Marco {{ i + 1 }}
+            <th v-for="i in frames" :key="i">
+              Marco {{ i }}
             </th>
             <th>¿Fallo de página?</th>
           </tr>
@@ -22,12 +22,9 @@
           >
             <td>{{ index + 1 }}</td>
             <td>{{ step.page }}</td>
-            <td
-              v-for="(frame, i) in step.memory"
-              :key="i"
-            >
-              {{ frame !== undefined ? frame : '-' }}
-            </td>
+              <td v-for="i in frames" :key="i">
+                {{ step.memory[i - 1] !== null && step.memory[i - 1] !== undefined ? step.memory[i - 1] : '-' }}
+              </td>
             <td class="icon">{{ step.hit }}</td>
           </tr>
         </tbody>
@@ -40,6 +37,10 @@
 defineProps({
   steps: {
     type: Array,
+    required: true
+  },
+  frames: {
+    type: Number,
     required: true
   }
 });

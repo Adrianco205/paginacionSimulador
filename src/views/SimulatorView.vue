@@ -14,7 +14,7 @@
     />
 
     <!-- Resultados -->
-    <SimulationTable v-if="steps.length" :steps="steps" />
+    <SimulationTable v-if="steps.length" :steps="steps" :frames="frames" />
     <ResultSummary v-if="steps.length" :steps="steps" />
   </main>
 </template>
