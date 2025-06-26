@@ -1,21 +1,18 @@
 <template>
   <main class="simulator-container" style="max-width: 1600px; margin: auto;">
-    <!-- Entrada de datos -->
     <PageInput @set-data="handleData" />
 
-    <!-- Selector de algoritmo -->
     <AlgorithmSelector @set-algo="algo = $event" />
 
-    <!-- Controles -->
     <Controls
       :canStart="canSimulate"
       @simulate="runSimulation"
       @simulate-both="runBothSimulations"
       @reset="resetSimulation"
+      @show-documentation="showDocumentation = true"
     />
 
 
-<!-- Resultado único si el algoritmo es FIFO o LRU -->
 <section
   v-if="steps.length > 0 && algo !== 'both'"
   class="result-section"
@@ -27,7 +24,6 @@
   <ResultSummary :steps="steps" />
 </section>
 
-<!-- Resultados FIFO y LRU en columnas -->
 <div
   v-if="stepsFIFO.length > 0 || stepsLRU.length > 0"
   class="results-row"
@@ -45,6 +41,8 @@
   </section>
 </div>
 
+<DocumentationModal :isVisible="showDocumentation" @close="showDocumentation = false" />
+
   </main>
 </template>
 
@@ -55,6 +53,7 @@ import AlgorithmSelector from '../components/AlgorithmSelector.vue';
 import Controls from '../components/Controls.vue';
 import SimulationTable from '../components/SimulationTable.vue';
 import ResultSummary from '../components/ResultSummary.vue';
+import DocumentationModal from '../components/DocumentationModal.vue'; // ¡Importamos el nuevo componente!
 
 import { fifo } from '../logic/fifo.js';
 import { lru } from '../logic/lru.js';
@@ -67,6 +66,7 @@ const stepsFIFO = ref([]);
 const stepsLRU = ref([]);
 const currentStepFIFO = ref(0);
 const currentStepLRU = ref(0);
+const showDocumentation = ref(false); // ¡Nueva variable de estado para el modal!
 
 async function runBothSimulations() {
   const fifoResult = fifo(pages.value, frames.value);
